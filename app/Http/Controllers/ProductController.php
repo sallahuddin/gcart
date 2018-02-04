@@ -89,6 +89,40 @@ class ProductController extends Controller
 
     }
 
+      /**
+     * Display the specified resource.
+     *
+     * @param  \App\Product  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+      $product = Product::find($id);
+
+      if ($product != null){
+
+         $response = array(
+                'error'  => false,
+    			'status' => 1,
+    			'message'=>'Product Detail',
+                'result' => $product,
+                'messagecode'=>101
+               );
+               return response()->json($response);
+         }
+            else {
+              $response = array(
+                'error'  => true,
+    			'status' => 2,
+    			'message'=>'Product is not Found ',
+                'result' => '',
+                'messagecode'=>102
+               );
+              
+              return response()->json($response);
+        }
+    }
+
    
     /**
      * Update the specified resource in storage.
